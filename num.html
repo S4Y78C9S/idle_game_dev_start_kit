@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タイトル</title>
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+
+<style>
+.example img {
+	width: 100%;
+}
+</style>
+</head>
+
+<body>
+<div id="main" style="max-width:100%"></div>
+
+<button name="button" onclick="pause()">START/STOP</button>
+<br/>
+<button name="button" onclick="upparam1()">up param1</button>
+<br/>
+<button name="button" onclick="upparam2()">up param2</button>
+
+</body>
+<script type="text/javascript">
+var Status = {
+    RUN : 1,
+    STOP : 2,
+};
+var tik = 1n; // ゲーム開始時からのカウント
+var num = 10n;
+var param1 = 1n;
+var param2 = 1n;
+var timer = null;
+var status = Status.RUN;
+
+function upparam1() {
+    param1 = param1 + 1n;
+}
+function upparam2() {
+    param2 = param2 + 100n;
+}
+
+function funcAdd1() {
+    tik = tik + 1n;
+    //num = num * 100n;
+    //num = num + 1n;
+    //num = num * 2n;
+    num = num + param1 * 10n + param2 * 10n;
+    var str = num.toString();
+    document.getElementById( "main" ).innerHTML = str;
+}
+
+function pause() {
+    if ( status == Status.RUN ) {
+        status = Status.STOP;
+        clearInterval(timer);
+    } else {
+        status = Status.RUN;
+        timer = setInterval(funcAdd1, 50);
+    }
+}
+
+function main() {
+    var element=document.getElementById("main");
+    var passstr = "123";
+    element.innerHTML = passstr;
+
+    timer = setInterval(funcAdd1, 50);
+
+}
+main();
+</script>
+</html>
