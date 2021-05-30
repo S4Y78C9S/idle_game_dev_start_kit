@@ -7,7 +7,7 @@
 <meta name="Description" content="" />
 <meta name="Keywords" content="" />
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
-<script type="text/javascript" src="cookie.js" ></script>
+
 <style>
 .example img {
 	width: 100%;
@@ -64,12 +64,12 @@ function pause() {
     }
 }
 
-
 function main() {
-    var tmp = getCookie("num");
-    console.log("tmp="+tmp);
-    setCookie("num", 123n, 10);
+    var cookies = document.cookie; //全てのcookieを取り出して
 
+    console.log("cookies="+cookies);
+    document.cookie = "hakkeyoi=のここった";  // "hakkeyoi=のここった"
+    console.log("document.cookie="+document.cookie);
 
     var element=document.getElementById("main");
     var passstr = "123";
